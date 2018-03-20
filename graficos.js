@@ -233,6 +233,15 @@ function desenharGraficos(){
 
 
 //grafico de colunas
+/* no contexto do Bytebank, poderíamos falar que o banco passou a oferecer aos clientes o benefício de milhas (ou pontos). 
+ Aí podemos montar um gráfico que mostra quantas milhas um usuário conseguiu juntar a cada mês. */
+ /*o Bytebank costuma aumentar o limite de crédito quanto mais a pessoa usa o cartão. 
+ Assim, faríamos no eixo y os valores dos limites e no eixo x tipo *1º aumento*, *2º aumento*,... 
+ aí, o gráfico mostraria as categorias de gastos, se cresceu ou diminuiu conforme o usuário recebeu um aumento de crédito. 
+ Acho que seria um gráfico interessante para o banco, nem tanto para o usuário final, 
+ mas até aí podemos falar que eles pediram para que montássemos uma visualização para uma apresentação institucional, 
+ onde eles queriam observar se as pessoas passam a gastar mais, conforme recebem mais crédito e em que áreas especificamente.*/
+
 	var tabela = new google.visualization.DataTable();
 	
 	tabela.addColumn('string','gastos por categoria');
@@ -603,5 +612,15 @@ var tabela = google.visualization.arrayToDataTable([
 
       var grafico = new google.visualization.AreaChart(document.getElementById("graficoAreaLinguagem"));
       grafico.draw(tabela, opcoes);
+
+    //grafico com colunas e "selecao" de periodo
+    //grafico de dispersao
+	    /*conforme o aumento de credito de uma pessoa, aumento do valor gasto
+	    limite de crédito x valor gasto*/
+    //grafico de bolhas
+    	/*limite de crédito x valor gasto x numero de usuarios x cidade*/
+    //grafico com duas linhas curvas e depois dois eixos
+    	/*comparar numero de convites enviados com quantidade de adesão - quantos usuarios aderiram*/
+    
 
 }
