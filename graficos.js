@@ -159,10 +159,11 @@ function desenharGraficos(){
 		grafico.draw(tabela, opcoes);
 
 	//grafico de barras com arquivo json
+		
 		var dadosJson = $.ajax({
-			//url: 'dados.json',
-			url: 'https://gist.githubusercontent.com/cassiass/369d0b789eb610c0d4fa5a8eae7e4eb8/raw/458c60460002b96aa2969069956f12e31df062d9/dados.json',
-			dataType: 'json',
+			url: 'https://gist.githubusercontent.com/cassiass/369d0b789eb610c0d4fa5a8eae7e4eb8/raw/458c60460002b96aa2969069956f12e31df062d9/dados.json',	
+			mimeType: "application/json",
+			dataType: 'json',		
 			async: false
 		}).responseText;
 
@@ -187,10 +188,17 @@ function desenharGraficos(){
 					}
 		}
 
-		var grafico = new google.visualization.BarChart(
+		var graficoBarra = new google.visualization.BarChart(
 			document.getElementById('graficoBarrasJson'));	
-		grafico.draw(tabela, opcoes);	
+		graficoBarra.draw(tabela, opcoes);	
 
+		const socket = io.connect('http://localhost:3000', {transport: ['websocket']});
+
+		socket.on('atualizaBarras', function(dadosJson){
+			var tabela = new google.visualization.DataTable(dadosJson);
+			graficoBarra.draw(tabela, opcoes);
+
+		});
 
 //grafico de barras empilhadas
 	var tabela = new google.visualization.DataTable();
@@ -242,7 +250,7 @@ function desenharGraficos(){
  mas até aí podemos falar que eles pediram para que montássemos uma visualização para uma apresentação institucional, 
  onde eles queriam observar se as pessoas passam a gastar mais, conforme recebem mais crédito e em que áreas especificamente.*/
 
-	var tabela = new google.visualization.DataTable();
+	/*var tabela = new google.visualization.DataTable();
 	
 	tabela.addColumn('string','gastos por categoria');
 	tabela.addColumn('number','Educação');
@@ -262,10 +270,10 @@ function desenharGraficos(){
 			['Educação','Transporte','Lazer','Cartão de crédito','Saúde','Alimentação'],
 			[2000, 500, 230, 50, 900, 260]
 			
-		]);
+		]);*/
 
 	//opcoes que customizam o grafico
-		var opcoes = {
+		/*var opcoes = {
 
 			title:'Tipos de Gastos',
 			height: 400,
@@ -274,15 +282,15 @@ function desenharGraficos(){
 			isStacked: 'absolute',
 			vAxis: {minValue: 0},
 			bar: { groupWidth: '25%' }
-		};
+		};*/
 
 	//desenhando grafico
-	var grafico = new google.visualization.ColumnChart(document.getElementById('graficoColunasEmpilhadas'));
-			grafico.draw(tabela, opcoes);
+	/*var grafico = new google.visualization.ColumnChart(document.getElementById('graficoColunasEmpilhadas'));
+			grafico.draw(tabela, opcoes);*/
 
 
 //grafico de area
- var tabela = google.visualization.arrayToDataTable([
+ /*var tabela = google.visualization.arrayToDataTable([
           ['Ano', 'Entradas', 'Saídas'],
           ['2013',  1000,      400],
           ['2014',  1170,      460],
@@ -299,11 +307,11 @@ function desenharGraficos(){
         };
 
         var grafico = new google.visualization.AreaChart(document.getElementById('graficoArea'));
-        grafico.draw(tabela, opcoes);
+        grafico.draw(tabela, opcoes);*/
 
 
 //grafico de area com gastos
-var tabela = google.visualization.arrayToDataTable([
+/*var tabela = google.visualization.arrayToDataTable([
         ['Faculdade', 'Transporte', 'Lazer', 'Internet', 'Cartão de crédito',
          'Alimentação', { role: 'annotation' } ],
         ['2014', 10, 24, 20, 32, 18, ''],
@@ -325,11 +333,11 @@ var tabela = google.visualization.arrayToDataTable([
         };
 
       var grafico = new google.visualization.AreaChart(document.getElementById("graficoAreaGastos"));
-      grafico.draw(tabela, opcoes);
+      grafico.draw(tabela, opcoes);*/
 
 
  //grafico de area com linguagens de programacao stacked e com data
- var tabela = google.visualization.arrayToDataTable([
+ /*var tabela = google.visualization.arrayToDataTable([
         ['Semana','Java','PHP','Ruby','C','JavaScript'],
         [new Date('2012, 12, 16'),69,31,4,19,24],
         [new Date('2012, 12, 23'),64,25,3,18,19],
@@ -611,7 +619,7 @@ var tabela = google.visualization.arrayToDataTable([
         };
 
       var grafico = new google.visualization.AreaChart(document.getElementById("graficoAreaLinguagem"));
-      grafico.draw(tabela, opcoes);
+      grafico.draw(tabela, opcoes);*/
 
     //grafico com colunas e "selecao" de periodo
     //grafico de dispersao
@@ -623,4 +631,4 @@ var tabela = google.visualization.arrayToDataTable([
     	/*comparar numero de convites enviados com quantidade de adesão - quantos usuarios aderiram*/
     
 
-}
+};
