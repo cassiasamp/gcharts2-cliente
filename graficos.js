@@ -195,38 +195,40 @@ function desenharGraficos(){
 
 
 //grafico de barras empilhadas
-	var tabela = new google.visualization.DataTable();
-	
-	tabela.addColumn('string','gastos por categoria');
-	tabela.addColumn('number','Educação');
-	tabela.addColumn('number','Transporte');
-	tabela.addColumn('number','Lazer');
+	var tabela = new google.visualization.DataTable();	
+
+	tabela.addColumn('date','anos');
+	tabela.addColumn('number','Conta poupança');
+	tabela.addColumn('number','Conta salário');
+	tabela.addColumn('number','Conta corrente');
 	tabela.addColumn('number','Cartão de crédito');
-	tabela.addColumn('number','Saúde');
-	tabela.addColumn('number','Alimentação');
 
 	tabela.addRows([
-		['gastos por categoria',2000,500,230,50,900,260]
+		[new Date('2012'),600,130,230,700],
+		[new Date('2013'),200,175,210,150],
+		[new Date('2014'),150,500,220,900]
 	]);
     
-    var tabela = google.visualization.arrayToDataTable(
+   /* var tabela = google.visualization.arrayToDataTable(
 		[	
 
-			['Educação','Transporte','Lazer','Cartão de crédito','Saúde','Alimentação'],
-			[2000, 500, 230, 50, 900, 260]
+			['Conta poupança','Conta salário','Conta corrente','Cartão de crédito'],
+			[600, 500, 230, 900]
 			
-		]);
+		]);*/
 
 	//opcoes que customizam o grafico
 		var opcoes = {
 
-			title:'Tipos de Gastos',
+			title:'Tipos de contas por categoria',
 			height: 400,
-			width: 800,
+			width: 900,
 			legend: 'labeled',	
 			isStacked: 'absolute',
 			bar: { groupWidth: '55%' },
-			hAxis: {minValue: 0}
+			hAxis: {minValue: 0, gridlines: {color:'transparent'}},
+			//vAxis: { gridlines: { count: 3 } }
+			//vAxis: {format: 'yy'}
 		};
 
 	//desenhando grafico
@@ -243,8 +245,8 @@ function desenharGraficos(){
  Acho que seria um gráfico interessante para o banco, nem tanto para o usuário final, 
  mas até aí podemos falar que eles pediram para que montássemos uma visualização para uma apresentação institucional, 
  onde eles queriam observar se as pessoas passam a gastar mais, conforme recebem mais crédito e em que áreas especificamente.*/
-
-	var tabela = new google.visualization.DataTable();
+//grafico de colunas empilhadas
+	/*var tabela = new google.visualization.DataTable();
 	
 	tabela.addColumn('string','gastos por categoria');
 	tabela.addColumn('number','Educação');
@@ -256,25 +258,29 @@ function desenharGraficos(){
 
 	tabela.addRows([
 		['gastos por categoria',2000,500,230,50,900,260]
-	]);
+	]);*/
     
     var tabela = google.visualization.arrayToDataTable(
 		[	
 
-			['Educação','Transporte','Lazer','Cartão de crédito','Saúde','Alimentação'],
-			[2000, 500, 230, 50, 900, 260]
+	['aumentos','1 aumento', '2 aumento', '3 aumento', '4 aumento', '5 aumento',
+         '6 aumento', { role: 'annotation' } ],
+        [new Date('2012, 12, 16'), 10, 24, 20, 32, 18, 5, ''],
+        [new Date('2013, 12, 16'), 16, 22, 23, 30, 16, 9, ''],
+        [new Date('2014, 12, 16'), 28, 19, 29, 30, 12, 13, '']
 			
 		]);
 
 	//opcoes que customizam o grafico
 		var opcoes = {
 
-			title:'Tipos de Gastos',
+			title:'Aumentos por mês',
 			height: 400,
 			width: 800,
 			legend: 'labeled',	
 			isStacked: 'absolute',
-			vAxis: {minValue: 0},
+			vAxis: {minValue: 0, gridlines: {color:'transparent'}},
+			hAxis: { gridlines: { count: 0 } },
 			bar: { groupWidth: '25%' }
 		};
 
@@ -320,19 +326,19 @@ var tabela = google.visualization.arrayToDataTable([
         	width: 650,
          	legend: {position: 'right', maxLines: 3},
           	vAxis: {
-            	minValue: 0,
+            		minValue: 0,
           	},
-          	title: 'AreaChart de gastos',
-          	isStacked: true,
+          	title: 'Gastos por categorias',
+          	isStacked: true
         };
 
       var grafico = new google.visualization.AreaChart(document.getElementById("graficoAreaGastos"));
       grafico.draw(tabela, opcoes);
 
 
- //grafico de area com linguagens de programacao stacked e com data
+ //grafico de áreas empilhadas
  var tabela = google.visualization.arrayToDataTable([
-        ['Semana','Java','PHP','Ruby','C','JavaScript'],
+        ['Semana','Conta cartão','Conta poupança','Conta salário','Conta corrente','Cartão de crédito'],
         [new Date('2012, 12, 16'),69,31,4,19,24],
         [new Date('2012, 12, 23'),64,25,3,18,19],
         [new Date('2012, 12, 30'),62,26,3,17,19],
@@ -608,8 +614,8 @@ var tabela = google.visualization.arrayToDataTable([
           //},
           vAxis:{
           	minValue: 0},
-            //format: 'Y, MM, DD'},
-          title: 'AreaChart de linguagens de programação indo até 100%'
+           hAxis:{format: 'yyyy'},
+          title: 'Receitas anuais de contas por categorias indo até 100%'
         };
 
       var grafico = new google.visualization.AreaChart(document.getElementById("graficoAreaLinguagem"));
@@ -640,38 +646,38 @@ function handleQueryResponse(response) {
 
 //histograma
         var tabela = google.visualization.arrayToDataTable([
-          ['Dinosaur', 'Length'],
-          ['Acrocanthosaurus (top-spined lizard)', 12.2],
-          ['Albertosaurus (Alberta lizard)', 9.1],
-          ['Allosaurus (other lizard)', 12.2],
-          ['Apatosaurus (deceptive lizard)', 22.9],
-          ['Archaeopteryx (ancient wing)', 0.9],
-          ['Argentinosaurus (Argentina lizard)', 36.6],
-          ['Baryonyx (heavy claws)', 9.1],
-          ['Brachiosaurus (arm lizard)', 30.5],
-          ['Ceratosaurus (horned lizard)', 6.1],
-          ['Coelophysis (hollow form)', 2.7],
-          ['Compsognathus (elegant jaw)', 0.9],
-          ['Deinonychus (terrible claw)', 2.7],
-          ['Diplodocus (double beam)', 27.1],
-          ['Dromicelomimus (emu mimic)', 3.4],
-          ['Gallimimus (fowl mimic)', 5.5],
-          ['Mamenchisaurus (Mamenchi lizard)', 21.0],
-          ['Megalosaurus (big lizard)', 7.9],
-          ['Microvenator (small hunter)', 1.2],
-          ['Ornithomimus (bird mimic)', 4.6],
-          ['Oviraptor (egg robber)', 1.5],
-          ['Plateosaurus (flat lizard)', 7.9],
-          ['Sauronithoides (narrow-clawed lizard)', 2.0],
-          ['Seismosaurus (tremor lizard)', 45.7],
-          ['Spinosaurus (spiny lizard)', 12.2],
-          ['Supersaurus (super lizard)', 30.5],
-          ['Tyrannosaurus (tyrant lizard)', 15.2],
-          ['Ultrasaurus (ultra lizard)', 30.5],
-          ['Velociraptor (swift robber)', 1.8]]);
+          ['cliente', 'idade'],
+          ['Andre Da Costa', 22],
+          ['Eduarda Boaron', 30],
+          ['Giovanna Pelinski', 28],
+          ['José Hugo Silva', 29],
+          ['Maíra Bortoluzzi', 26],
+          ['Fabio Vinicius Barth', 36],
+          ['Larissa Dill Gazzola', 61],
+          ['Patryck Garcia Prado', 35],
+          ['Emilly Almeida', 58],
+          ['Arthur Rodrigues Caetano', 27],
+          ['Amanda Franco', 49],
+          ['Gabriela Boiago Dias', 27],
+          ['Matheus Prince', 32],
+          ['Alexandre Toshio', 34],
+          ['Gabriel Alves Pinheiro', 55],
+          ['Vitor Henrique Soares', 21],
+          ['Rafaela Cristina Pereira', 39],
+          ['Anna Paula Lopes', 56],
+          ['Daphne Zilioto', 43],
+          ['Flávio Germano', 51],
+          ['Ingrid da Costa', 62],
+          ['João Elias Oliveira', 41],
+          ['Lucas Gomes Viana', 45],
+          ['Matheus Fadel', 23],
+          ['Milena Zequim', 30],
+          ['Tiago João Kavleski', 52],
+          ['Sabrina Conceição Silva', 35],
+          ['Thomaz Ziemberg', 18]]);
 
         var opcoes = {
-          title: 'Lengths of dinosaurs, in meters',
+          title: 'Distribuição de clientes por idade',
           legend: { position: 'none' },
           vAxis:{gridlines:{color:'transparent'}},
           width: 900,
@@ -683,162 +689,167 @@ function handleQueryResponse(response) {
       
 
     	//dashboard com controles
-
-        // Create our data table.
         var tabela = google.visualization.arrayToDataTable([
-          ['Name', 'Donuts eaten'],
-          ['Michael' , 5],
-          ['Elisa', 7],
-          ['Robert', 3],
-          ['John', 2],
-          ['Jessica', 6],
-          ['Aaron', 1],
-          ['Margareth', 8]
+              	['Mês',   'Valores'],
+                ['Jan',    80.66 ],
+                ['Fev',    79.84 ],
+                ['Mar',    78.6  ],
+                ['Abr',    72.73 ],
+                ['Mai',    80.05 ],
+                ['Jun',    72.49 ],
+                ['Jul',    68.09 ],
+                ['Ago',    81.55 ],
+                ['Set',    68.6  ],
+                ['Out',    78.09 ],
+                ['Nov',    78.09 ],
+                ['Dez',    78.09 ]
         ]);
 
-        // Create a dashboard.
+        //criando o dashboard
         var dashboard = new google.visualization.Dashboard(
             document.getElementById('dashboard'));
 
-        // Create a range slider, passing some options
-        var donutRangeSlider = new google.visualization.ControlWrapper({
-          'controlType': 'NumberRangeFilter',
-          'containerId': 'filtro',
-          'options': {
-            'filterColumnLabel': 'Donuts eaten'
+        //criando o filtro com seleção e passando as opções
+        var filtro = new google.visualization.ControlWrapper({
+          controlType: 'NumberRangeFilter',
+          containerId: 'filtro',
+          options: {
+            'filterColumnLabel': 'Valores'
           }
         });
 
-        // Create a pie chart, passing some options
-        var pieChart = new google.visualization.ChartWrapper({
-          'chartType': 'PieChart',
-          'containerId': 'graficoDashboard',
-          'options': {
-            'width': 300,
-            'height': 300,
-            'pieSliceText': 'value',
-            'legend': 'right'
+        //criando o gráfico de colunas, passando as opcoes
+        var graficoColunas = new google.visualization.ChartWrapper({
+          chartType: 'ColumnChart',
+          containerId: 'graficoDashboard',
+          options: {
+            width: 900,
+            height: 600,
+            legend: 'right',
+		title: 'Valores de crédito por mês'
           }
         });
 
-        // Establish dependencies, declaring that 'filter' drives 'pieChart',
-        // so that the pie chart will only display entries that are let through
-        // given the chosen slider range.
-        dashboard.bind(donutRangeSlider, pieChart);
 
-        // Draw the dashboard.
+	//estabelecendo as dependências, passando os parâmetros para mostrar que o grafico de colunas
+	//segue o que foi estabelecido pelo filtro
+        dashboard.bind(filtro, graficoColunas);
+
+        //funcao que desenha o dashboard
         dashboard.draw(tabela);
 
       
-      //filtro com colunas
 
-//CHART RANGE
-   
-var control = new google.visualization.ControlWrapper({
-      'controlType': 'ChartRangeFilter',
-      'containerId': 'chartRangeFilter_control_div',
-      'options': {
-        // Filter by the date axis.
-        'filterColumnIndex': 0,
-        'ui': {
-          'chartType': 'LineChart',
-          'chartOptions': {
-            'chartArea': {'width': '90%'},
-            'hAxis': {'baselineColor': 'none'}
-          },
-          // Display a single series that shows the closing value of the stock.
-          // Thus, this view has two columns: the date (axis) and the stock value (line series).
-          'chartView': {
-            'columns': [0, 3]
-          },
-          // 1 day in milliseconds = 24 * 60 * 60 * 1000 = 86,400,000
-          'minRangeSize': 86400000
-        }
-      },
-      // Initial range: 2012-02-09 to 2012-03-20.
-      'state': {'range': {'start': new Date(2012, 1, 9), 'end': new Date(2012, 2, 20)}}
-    });
 
-    var chart = new google.visualization.ChartWrapper({
-      'chartType': 'ColumnChart',
-      'containerId': 'chartRangeFilter_chart_div',
-      'options': {
-        // Use the same chart area width as the control for axis alignment.
-        'chartArea': {'height': '80%', 'width': '90%'},
-        'hAxis': {'slantedText': false},
-        'vAxis': {'viewWindow': {'min': 0, 'max': 2000}},
-        'legend': {'position': 'none'},
-        'title': 'Selecionar o mês para ver o balanço (precisa ainda ser melhorado)',
-      },
-      // Convert the first column from 'date' to 'string'.
-      'view': {
-        'columns': [
-          {
-            'calc': function(dataTable, rowIndex) {
-              return dataTable.getFormattedValue(rowIndex, 0);
-            },
-            'type': 'string'
-          }, 1, 2, 3, 4]
-      }
-    });
 
-    var data = new google.visualization.DataTable();
-    data.addColumn('date', 'Date');
-    data.addColumn('number', 'Saídas');
-    data.addColumn('number', 'Entradas');
-    data.addColumn('number', 'Baixa');
-    data.addColumn('number', 'Crescimento');
+      //filtro com colunas tipo 2
+	var controle = new google.visualization.ControlWrapper({
+	      controlType: 'ChartRangeFilter',
+	      containerId: 'amplitudeDoFiltro',
+	      options: {
+		//filtrar pelo eixo da data
+		'filterColumnIndex': 0,
+		ui: {
+		  chartType: 'LineChart',
+		  chartOption: {
+		    chartArea: {width: '90%'},
+		    hAxis: {baselineColor: 'none'}
+		  },
+		  //mostrar os valores
+		  chartView: {
+		    columns: [0, 3]
+		  },
+		  // 1 dia em milisegundos = 24 * 60 * 60 * 1000 = 86,400,000
+		  minRangeSize: 86400000
+		}
+	      },
+	      // limite inicial: 2012-02-09 to 2012-03-20.
+	      state: {range: {start: new Date(2012, 1, 9), end: new Date(2012, 2, 20)}}
+	    });
 
-    // Create random stock values, just like it works in reality.
-    var open, close = 300;
-    var low, high;
-    for (var day = 1; day < 121; ++day) {
-      var change = (Math.sin(day / 2.5 + Math.PI) + Math.sin(day / 3) - Math.cos(day * 0.7)) * 150;
-      change = change >= 0 ? change + 10 : change - 10;
-      open = close;
-      close = Math.max(50, open + change);
-      low = Math.min(open, close) - (Math.cos(day * 1.7) + 1) * 15;
-      low = Math.max(0, low);
-      high = Math.max(open, close) + (Math.cos(day * 1.3) + 1) * 15;
-      var date = new Date(2012, 0 ,day);
-      data.addRow([date, Math.round(low), Math.round(open), Math.round(close), Math.round(high)]);
-    }
+	    var grafico = new google.visualization.ChartWrapper({
+	      chartType: 'ColumnChart',
+	      containerId: 'graficoDoFiltro',
+	      options: {
+		//usar a mesma largura do grafico para o controle, alinhando os dois
+		chartArea: {height: '80%', width: '90%'},
+		hAxis: {slantedText: false},
+		vAxis: {viewWindow: {min: 0, max: 2000}},
+		legend: {position: 'none'},
+		title: 'Selecionar o mês para ver o balanço (precisa ainda ser melhorado)',
+		width: 915,
+		height: 300
+	      },
+	     
+	      //converter a primeira coluna de data para string
+	      view: {
+		columns: [
+		  {
+		    calc: function(tabela, rowIndex) {
+		      return tabela.getFormattedValue(rowIndex, 0);
+		    },
+		    type: 'string'
+		  }, 1, 2, 3, 4]
+	      }
+	    });
 
-    var dashboard = new google.visualization.Dashboard(
-      document.getElementById('chartRangeFilter_dashboard_div'));
-    dashboard.bind(control, chart);
-    dashboard.draw(data);
-  }
+	    var tabela = new google.visualization.DataTable();
+	    tabela.addColumn('date', 'Date');
+	    tabela.addColumn('number', 'Saídas');
+	    tabela.addColumn('number', 'Entradas');
+	    tabela.addColumn('number', 'Baixa');
+	    tabela.addColumn('number', 'Crescimento');
 
-//bubble chart
-    function drawSeriesChart() {
+	    //criando dados randômicos e adicionando na tabela
+	    var entrada, saída = 300;
+	    var baixa, crescimento;
+	    for (var dia = 1; dia < 121; ++dia) {
+	      var mudança = (Math.sin(dia / 2.5 + Math.PI) + Math.sin(dia / 3) - Math.cos(dia * 0.7)) * 150;
+	      mudança = mudança >= 0 ? mudança + 10 : mudança - 10;
+	      entrada = saída;
+	      saída = Math.max(50, entrada + mudança);
+	      baixa = Math.min(entrada, saída) - (Math.cos(dia * 1.7) + 1) * 15;
+	      baixa = Math.max(0, baixa);
+	      crescimento = Math.max(entrada, saída) + (Math.cos(dia * 1.3) + 1) * 15;
+	      var data = new Date(2012, 0 ,dia);
+	      tabela.addRow([data, Math.round(baixa), Math.round(entrada), Math.round(saída), Math.round(crescimento)]);
+	    }
 
-      var data = google.visualization.arrayToDataTable([
-        ['Mês',   'Valor',       'Rendimento',      'Population'],
-        ['Jan',    80.66,              1.67,          34646463],
-        ['Fev',    79.84,              1.36,          81902307],
-        ['Mar',    78.6,               1.84,           5523095],
-        ['Abr',    72.73,              2.78,          79716203],
-        ['Mai',    80.05,              2,             61801570],
-        ['Jun',    72.49,              1.7,           73137148],
-        ['Jul',    68.09,              4.77,          31090763],
-        ['Ago',    81.55,              2.96,           7485600],
-        ['Set',    68.6,               1.54,         141850000],
-        ['Out',    78.09,              2.05,         307007000],
-        ['Nov',    78.09,              2.05,         307007000],
-        ['Dez',    78.09,              2.05,         307007000]
+	    var dashboard = new google.visualization.Dashboard(
+	      document.getElementById('dashboardDoFiltro'));
+	    	dashboard.bind(controle, grafico);
+	   	dashboard.draw(tabela);
+	  
+
+//grafico de bolhas
+      var tabela = google.visualization.arrayToDataTable([
+	['Mês',   'Valor',       'Rendimento', ''],
+        ['Jan',    80.66,              1.67, ''],
+        ['Fev',    79.84,              1.36, ''],
+        ['Mar',    78.6,               1.84, ''],
+        ['Abr',    72.73,              2.78, ''],
+        ['Mai',    80.05,              2, ''],
+        ['Jun',    72.49,              1.7, ''],
+        ['Jul',    68.09,              4.77, ''],
+        ['Ago',    81.55,              2.96, ''],
+        ['Set',    68.6,               1.54, ''],
+        ['Out',    78.09,              2.05, ''],
+        ['Nov',    78.09,              2.05, ''],
+        ['Dez',    78.09,              2.05, '']
       ]);
 
-      var options = {
+      var opcoes = {
         title: 'Correlação entre mês, rendimento ' +
                'valor investido (2017)',
         hAxis: {title: 'Valor investido'},
         vAxis: {title: 'Percentual de crescimento'},
-        bubble: {textStyle: {fontSize: 11}}
+        bubble: {textStyle: {fontSize: 11}},
+	width: 900,
+	height: 500
       };
 
-      var chart = new google.visualization.BubbleChart(document.getElementById('series_chart_div'));
-      chart.draw(data, options);
+      var grafico = new google.visualization.BubbleChart(document.getElementById('graficoBolha'));
+      grafico.draw(tabela, opcoes);
    
  
 
