@@ -2,14 +2,45 @@
 	<head>
 		<meta charset="utf-8">
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		<script type="text/javascript" src="graficos.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<!--scripts dos graficos-->
+		<script type="text/javascript" src="graficoPizza.js"></script>
+		<script type="text/javascript" src="graficoLinha.js"></script>
+		<script type="text/javascript" src="graficoColuna.js"></script>
+		<script type="text/javascript" src="graficoBarras.js"></script>
+		<script type="text/javascript" src="graficoBarrasJson.js"></script>
+		<script type="text/javascript" src="graficoBarrasEmpilhadas.js"></script>
+		<script type="text/javascript" src="graficoColunasEmpilhadas.js"></script>
+		<script type="text/javascript" src="graficoArea.js"></script>
+		<script type="text/javascript" src="graficoAreasEmpilhadasGastos.js"></script>
+		<script type="text/javascript" src="graficoAreasEmpilhadas.js"></script>
+		<script type="text/javascript" src="graficoColunasPlanilha.js"></script>
+		<script type="text/javascript" src="graficoHistograma.js"></script>
+		<script type="text/javascript" src="graficoBolhas.js"></script>
+		<script type="text/javascript" src="graficoDashboard.js"></script>
+		<script type="text/javascript" src="graficoDashboardComposto.js"></script>
+		
+			<!--calbacks das funções dos graficos-->
 		<script>
 			google.charts.load('current', {'packages':['corechart', 'controls'],
 				'language': 'pt'});
-			google.charts.setOnLoadCallback(desenharGraficos);			
+			google.charts.setOnLoadCallback(desenharGraficoPizza);
+			google.charts.setOnLoadCallback(desenharGraficoLinha);
+			google.charts.setOnLoadCallback(desenharGraficoColuna);	
+			google.charts.setOnLoadCallback(desenharGraficoBarrasEstatico);	
+			google.charts.setOnLoadCallback(desenharGraficoBarrasSocket);	
+			google.charts.setOnLoadCallback(desenharGraficoBarrasEmpilhadas);	
+			google.charts.setOnLoadCallback(desenharGraficoColunhasEmpilhadas);	
+			google.charts.setOnLoadCallback(desenharGraficoArea);	
+			google.charts.setOnLoadCallback(desenharGraficoAreasEmpilhadasGastos);			
+			google.charts.setOnLoadCallback(desenharGraficoAreasEmpilhadas);	
+			google.charts.setOnLoadCallback(desenharGraficoColunasPlanilha);	
+			google.charts.setOnLoadCallback(desenharGraficoHistograma);
+			google.charts.setOnLoadCallback(desenharGraficoBolhas);	
+			google.charts.setOnLoadCallback(desenharGraficoDashboard);	
+			google.charts.setOnLoadCallback(desenhaGraficoDashboardComposto);
 		</script>
-		
+			<!--scripts do servidor-->
 		<script src="https://gcharts2-servidor.herokuapp.com/socket.io/socket.io.js"></script>
 
 	</head>
@@ -22,29 +53,25 @@
 		<div id="graficoBarrasEmpilhadas"></div>
 		<div id="graficoColunasEmpilhadas"></div>
 		<div id="graficoArea"></div>
-		<div id="graficoAreaGastos"></div>
-		<div id="graficoAreaLinguagem"></div>
+		<div id="graficoAreasEmpilhadasGastos"></div>
+		<div id="graficoAreasEmpilhadas"></div>
 		<div id="graficoPlanilha"></div>
-		<div id="histograma"></div>
-		<div id="graficoBolha"></div>
-		<div id="dashboard">
-		<div id="filtro"></div>
-		      <div id="graficoDashboard"></div>
-    		</div>
-    		<div id="dashboardDoFiltro" style="width: 950px; display: inline-block;">
-		      <table class="columns">
-			<tr>
-			  <td>
-			    <div id="graficoDoFiltro"></div>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-			    <div id="amplitudeDoFiltro" style="width: 915px; height: 50px;"></div>
-			  </td>
-			</tr>
-		      </table>
-	    	</div>
+		<div id="graficoHistograma"></div>
+		<div id="graficoBolhas"></div>
+		<div id="graficoDashboard">
+			<div id="filtroDashboard"></div>
+		  <div id="colunaDashboard"></div>
+    </div>
+    <div id="dashboardDoFiltro" style="width: 950px; display: inline-block;">
+		  <table class="columns">
+					<tr>
+					<td><div id="graficoDoFiltro"></div></td>
+					</tr>
+					<tr>
+					<td><div id="amplitudeDoFiltro" style="width: 915px; height: 50px;"></div></td>
+					</tr>
+		  </table>
+	  </div>
 		
 	</body>
 </html>
