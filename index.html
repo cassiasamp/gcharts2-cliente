@@ -24,21 +24,26 @@
 		<script>
 			google.charts.load('current', {'packages':['corechart', 'controls'],
 				'language': 'pt'});
-			google.charts.setOnLoadCallback(desenharGraficoPizza);
-			google.charts.setOnLoadCallback(desenharGraficoLinha);
-			google.charts.setOnLoadCallback(desenharGraficoColuna);	
-			google.charts.setOnLoadCallback(desenharGraficoBarrasEstatico);	
-			google.charts.setOnLoadCallback(desenharGraficoBarrasSocket);	
-			google.charts.setOnLoadCallback(desenharGraficoBarrasEmpilhadas);	
-			google.charts.setOnLoadCallback(desenharGraficoColunhasEmpilhadas);	
-			google.charts.setOnLoadCallback(desenharGraficoArea);	
-			google.charts.setOnLoadCallback(desenharGraficoAreasEmpilhadasGastos);			
-			google.charts.setOnLoadCallback(desenharGraficoAreasEmpilhadas);	
-			google.charts.setOnLoadCallback(desenharGraficoColunasPlanilha);	
-			google.charts.setOnLoadCallback(desenharGraficoHistograma);
-			google.charts.setOnLoadCallback(desenharGraficoBolhas);	
-			google.charts.setOnLoadCallback(desenharGraficoDashboard);	
-			google.charts.setOnLoadCallback(desenhaGraficoDashboardComposto);
+			google.charts.setOnLoadCallback(inicializar);
+
+			function inicializarGraficos(){
+				desenharGraficoPizza();
+				desenharGraficoLinha();
+				desenharGraficoColuna();
+				desenharGraficoBarrasEstatico();
+				desenharGraficoBarrasSocket();
+				desenharGraficoBarrasEmpilhadas();
+				desenharGraficoColunhasEmpilhadas();
+				desenharGraficoArea();
+				desenharGraficoAreasEmpilhadasGastos();
+				desenharGraficoAreasEmpilhadas();
+				desenharGraficoColunasPlanilha();
+				desenharGraficoHistograma();
+				desenharGraficoBolhas();
+				desenharGraficoDashboard();
+				desenhaGraficoDashboardComposto();
+			}
+			
 		</script>
 			<!--scripts do servidor-->
 		<script src="https://gcharts2-servidor.herokuapp.com/socket.io/socket.io.js"></script>
