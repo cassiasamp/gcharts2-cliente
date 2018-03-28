@@ -2,28 +2,24 @@ function desenharGraficoLinha(){
 //grafico de linha
 	tabela = new google.visualization.DataTable();
 	//colunas da tabela
-	tabela.addColumn('string','mês');
-	tabela.addColumn('number', 'gastos');
+	tabela.addColumn('string','ano');
+	tabela.addColumn('number', 'Conta poupança');
+	tabela.addColumn('number', 'Conta salário');
+	tabela.addColumn('number', 'Conta corrente');
+	tabela.addColumn('number', 'Cartão de crédito');
 	//linhas da tabela
 		tabela.addRows([
-			['jan',800],
-			['fev',400],
-			['mar',1100],
-			['abr',400],
-			['mai',500],
-			['jun',750],
-			['jul',1500],
-			['ago',650],
-			['set',850],
-			['out',400],
-			['nov',1000],
-			['dez',720]
+			['2012', 200, 275, 343, 470],
+			['2013', 221, 340, 380, 476],
+			['2014', 343, 331, 376, 450],
+			['2015', 442, 391, 387, 510],
+			['2016', 465, 400, 412, 532]
 		]);
 	//opcoes que customizam o grafico
 		var opcoes = {
-			title: 'Gastos por mês',
-			width: 650,
-			height: 300,
+			title: 'Quantidade de contas abertas por ano',
+			width: 950,
+			height: 430,
 			vAxis: 
 				{
 				format: 'currency', 
@@ -32,8 +28,26 @@ function desenharGraficoLinha(){
 							color: 'transparent'
 							}
 				},
-				curveType: 'function',
-				legend: 'none'
+			legend: 
+				{
+					position: 'right', 
+					maxLines: 1
+				},
+			chartArea:
+				{
+					left: 155,
+					top: 100,
+					width:'60%',
+					height:'70%'
+				},
+			titleTextStyle: 
+				{ 
+					color: '#5e5851',
+					fontName: 'Arial',
+					fontSize: 20,
+					bold: true 
+				},
+			//isStacked: true
 			}
 
 
