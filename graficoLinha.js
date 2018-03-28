@@ -46,8 +46,7 @@ function desenharGraficoLinha(){
 					fontName: 'Arial',
 					fontSize: 20,
 					bold: true 
-				},
-			//isStacked: true
+				}
 			}
 
 
